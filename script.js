@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generateBtn');
     const copyBtn = document.getElementById('copyBtn');
     const colorHistory = document.getElementById('colorHistory');
+    const numberBox = document.getElementById('numberBox');
+    const generateNumberBtn = document.getElementById('generateNumberBtn');
+    const minValueInput = document.getElementById('minValue');
+    const maxValueInput = document.getElementById('maxValue');
+    const numberTypeSelect = document.getElementById('numberType');
     
     // 存儲最多10個顏色
     const MAX_HISTORY = 10;
@@ -60,6 +65,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 生成隨機數字
+    function generateRandomNumber(min, max, type) {
+        if (type === 'integer') {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        } else if (type === 'decimal') {
+            return (Math.random() * (max - min) + min).toFixed(2);
+        } else if (type === 'one-decimal') {
+            return (Math.random() * (max - min) + min).toFixed(1);
+        }
+    }
+
+    // 更新隨機數字顯示
+    function updateNumber() {
+        const minValue = parseFloat(minValueInput.value) || 0;
+        const maxValue = parseFloat(maxValueInput.value) || 1000;
+        const numberType = numberTypeSelect.value;
+
+        if (minValue >= maxValue) {
+            alert('最小值必須小於最大值！');
+            return;
+        }
+
+        const newNumber = generateRandomNumber(minValue, maxValue, numberType);
+        numberBox.textContent = newNumber;
+    }
+
     // 複製顏色代碼
     async function copyToClipboard() {
         try {
@@ -76,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 添加事件監聽器
     generateBtn.addEventListener('click', updateColor);
     copyBtn.addEventListener('click', copyToClipboard);
-    colorBox.addEventListener('click', updateColor);    // 載入歷史記錄並初始生成一個顏色
+    colorBox.addEventListener('click', updateColor);
+    generateNumberBtn.addEventListener('click', updateNumber);    // 載入歷史記錄並初始生成一個顏色
     loadHistory();
     updateColor();
 });

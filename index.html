@@ -7,16 +7,43 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>隨機顏色產生器</h1>
-        <div class="color-box" id="colorBox"></div>
-        <div class="color-info">
-            <span id="colorCode">#000000</span>
-            <button id="copyBtn">複製顏色代碼</button>
-        </div>        <button id="generateBtn">生成新顏色</button>
-        <div class="history-container">
-            <h2 class="history-title">歷史記錄</h2>
-            <div class="color-history" id="colorHistory"></div>
+    <div class="main-container">
+        <!-- 隨機顏色區域 -->
+        <div class="color-container">
+            <h1>隨機顏色產生器</h1>
+            <div class="color-box" id="colorBox"></div>
+            <div class="color-info">
+                <span id="colorCode">#000000</span>
+                <button id="copyBtn">複製顏色代碼</button>
+            </div>
+            <button id="generateBtn">生成新顏色</button>
+            <div class="history-container">
+                <h2 class="history-title">歷史記錄</h2>
+                <div class="color-history" id="colorHistory"></div>
+            </div>
+        </div>
+
+        <!-- 隨機取數器區域 -->
+        <div class="number-container">
+            <h1>隨機取數器</h1>
+            <div class="number-box" id="numberBox">0</div>
+            <div class="number-range">
+                <label for="minValue">最小值：</label>
+                <input type="number" id="minValue" value="0">
+                <div class="max-value-container">
+                    <label for="maxValue">最大值：</label>
+                    <input type="number" id="maxValue" value="1000">
+                </div>
+                <div class="number-type">
+                    <label for="numberType">選擇數字類型：</label>
+                    <select id="numberType">
+                        <option value="integer">整數</option>
+                        <option value="decimal">小數（最多2位）</option>
+                        <option value="one-decimal">小數（1位）</option>
+                    </select>
+                </div>
+            </div>
+            <button id="generateNumberBtn">生成隨機數字</button>
         </div>
     </div>
     <script src="script.js"></script>
